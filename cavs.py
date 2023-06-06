@@ -67,6 +67,8 @@ def main(args):
 
         # Calculate the ratio of the mean bitrate to the video bitrate
         ratio = mean_bitrate / bitrate if not args.invert else bitrate/mean_bitrate
+        # Scale the ratio using a gamma factor for better visibility
+        ratio = ratio**args.scale_exponent
         
         pbar.set_description(f"Bitrate {bitrate}, ratio {ratio}")
 
@@ -98,6 +100,7 @@ if __name__ == "__main__":
     parser.add_argument("--output_file", type=str)
     parser.add_argument("--invert", action="store_true")
     parser.add_argument("--base", type=str, default="video")
+    parser.add_argument("--scale_exponent", type=float, default=1.0)
     args = parser.parse_args()
 
     main(args)
