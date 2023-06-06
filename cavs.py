@@ -17,7 +17,7 @@ def main(args):
     os.makedirs(args.tempdirname, exist_ok=True)
     os.makedirs(f"{args.tempdirname}_o", exist_ok=True)
     
-    ffmpeg_command = ['ffmpeg', '-y', '-i', input_file, '-c', 'copy', '-f', 'segment', '-segment_time', str(args.segment_duration), args.tempdirname + '/seg%d.mp4']
+    ffmpeg_command = ['ffmpeg', '-y', '-i', input_file, '-c', 'copy', '-f', 'segment', '-segment_time', str(args.segment_duration), args.tempdirname + '/seg%09d.mp4']
     
     ffmpeg_output = subprocess.run(ffmpeg_command, capture_output=True, text=True)
     
